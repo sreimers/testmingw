@@ -28,6 +28,8 @@ ls -lha /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/../../../../x86_64-w64-mingw32/inc
 ls -lha /usr/x86_64-w64-mingw32/include/io.h
 sudo cp -a /usr/x86_64-w64-mingw32/include/io.h /usr/include/io.h
 sudo cp -a /usr/x86_64-w64-mingw32/include/io.h /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/include/
+sudo mv /usr/include /usr/include_save
+sudo ln -s /usr/x86_64-w64-mingw32/include /usr/include
 
 cat /usr/bin/x86_64-w64-mingw32-configure
 
@@ -37,6 +39,9 @@ ln -s flac-${flac} flac
 
 mkdir flac/build_win
 pushd flac/build_win
-${_arch}-configure --disable-ogg --enable-static --disable-cpplibs --includedir=/usr/x86_64-w64-mingw32/include/
+${_arch}-configure --disable-ogg --enable-static --disable-cpplibs
 make
 popd
+
+sudo rm -f /usr/include
+sudo mv /usr/include_save /usr/include
