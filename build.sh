@@ -2,8 +2,7 @@
 
 flac="1.3.2"
 _arch="x86_64-w64-mingw32"
-
-env
+opus="1.2.1"
 
 mkdir -p mingw
 pushd mingw
@@ -21,12 +20,34 @@ wget -N $mingwurl/osl-0.9.1-1-x86_64.pkg.tar.xz
 yes | LANG=C sudo pacman -U *.pkg.tar.xz
 popd
 
+env
+
 x86_64-w64-mingw32-gcc -v
 echo | x86_64-w64-mingw32-gcc -E -Wp,-v -
 ls -lha /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/../../../../x86_64-w64-mingw32/include/io.h
 ls -lha /usr/x86_64-w64-mingw32/include/io.h
 
 cat /usr/bin/x86_64-w64-mingw32-configure
+
+
+# Build opus
+#-----------------------------------------------------------------------------
+if [ ! -d opus-$opus ]; then
+    wget -N "https://archive.mozilla.org/pub/opus/opus-${opus}.tar.gz"
+    tar -xzf opus-${opus}.tar.gz
+    mkdir opus-$opus/build
+    pushd opus-$opus/build
+    ${_arch}-configure \
+        --enable-custom-modes \
+        --disable-doc \
+        --disable-extra-programs
+    make
+    popd
+    mkdir opus; cp opus-$opus/build/.libs/libopus.a opus/
+    cp -a opus-$opus/include/*.h opus/
+fi
+
+
 
 exit 0
 
