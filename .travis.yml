@@ -1,0 +1,12 @@
+sudo: required
+language: c
+arch:
+        packages:
+                - wget
+                - perl
+                - zip
+                - unzip
+        script:
+                - "./build.sh"
+script:
+        - curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash
