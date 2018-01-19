@@ -37,6 +37,6 @@ ln -s flac-${flac} flac
 
 mkdir flac/build_win
 pushd flac/build_win
-${_arch}-configure --disable-ogg --enable-static --disable-cpplibs --libdir=/usr/x86_64-w64-mingw32/include/
+${_arch}-configure --disable-ogg --enable-static --disable-cpplibs --includedir=/usr/x86_64-w64-mingw32/include/
 make
 popd
