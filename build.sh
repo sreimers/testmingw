@@ -4,10 +4,6 @@ flac="1.3.2"
 _arch="x86_64-w64-mingw32"
 
 env
-x86_64-w64-mingw32-gcc -v
-echo | x86_64-w64-mingw32-gcc -E -Wp,-v -
-ls -lha /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/../../../../x86_64-w64-mingw32/include/io.h
-ls -lha /usr/x86_64-w64-mingw32/include/io.h
 
 mkdir -p mingw
 pushd mingw
@@ -24,6 +20,11 @@ wget -N $mingwurl/mingw-w64-winpthreads-5.0.3-1-any.pkg.tar.xz
 wget -N $mingwurl/osl-0.9.1-1-x86_64.pkg.tar.xz
 yes | LANG=C sudo pacman -U *.pkg.tar.xz
 popd
+
+x86_64-w64-mingw32-gcc -v
+echo | x86_64-w64-mingw32-gcc -E -Wp,-v -
+ls -lha /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/../../../../x86_64-w64-mingw32/include/io.h
+ls -lha /usr/x86_64-w64-mingw32/include/io.h
 
 wget http://downloads.xiph.org/releases/flac/flac-${flac}.tar.xz
 tar -xf flac-${flac}.tar.xz
