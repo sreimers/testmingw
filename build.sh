@@ -29,34 +29,12 @@ ls -lha /usr/x86_64-w64-mingw32/include/io.h
 
 cat /usr/bin/x86_64-w64-mingw32-configure
 
-
-# Build opus
-#-----------------------------------------------------------------------------
-if [ ! -d opus-$opus ]; then
-    wget -N "https://archive.mozilla.org/pub/opus/opus-${opus}.tar.gz"
-    tar -xzf opus-${opus}.tar.gz
-    mkdir opus-$opus/build
-    pushd opus-$opus/build
-    ${_arch}-configure \
-        --enable-custom-modes \
-        --disable-doc \
-        --disable-extra-programs
-    make
-    popd
-    mkdir opus; cp opus-$opus/build/.libs/libopus.a opus/
-    cp -a opus-$opus/include/*.h opus/
-fi
-
-
-
-exit 0
-
 wget http://downloads.xiph.org/releases/flac/flac-${flac}.tar.xz
 tar -xf flac-${flac}.tar.xz
 ln -s flac-${flac} flac
 
 mkdir flac/build_win
 pushd flac/build_win
-${_arch}-configure --disable-ogg --enable-static --disable-cpplibs
+${_arch}-configure --disable-ogg --enable-static --disable-cpplibs --libdir=/usr/x86_64-w64-mingw32/include/
 make
 popd
