@@ -1,6 +1,13 @@
 #!/bin/bash -ex
 
 flac="1.3.2"
+_arch="x86_64-w64-mingw32"
+
+env
+x86_64-w64-mingw32-gcc -v
+echo | x86_64-w64-mingw32-gcc -E -Wp,-v -
+ls -lha /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/../../../../x86_64-w64-mingw32/include/io.h
+ls -lha /usr/x86_64-w64-mingw32/include/io.h
 
 mkdir -p mingw
 pushd mingw
