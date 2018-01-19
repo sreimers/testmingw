@@ -26,6 +26,10 @@ echo | x86_64-w64-mingw32-gcc -E -Wp,-v -
 ls -lha /usr/lib/gcc/x86_64-w64-mingw32/7.2.1/../../../../x86_64-w64-mingw32/include/io.h
 ls -lha /usr/x86_64-w64-mingw32/include/io.h
 
+cat /usr/bin/x86_64-w64-mingw32-configure
+
+exit 0
+
 wget http://downloads.xiph.org/releases/flac/flac-${flac}.tar.xz
 tar -xf flac-${flac}.tar.xz
 ln -s flac-${flac} flac
